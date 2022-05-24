@@ -1,11 +1,14 @@
-/* body { */
+body { 
     /* Background pattern can be removed. I added to try and see the frosted glass effect on the background, but it didn’t work. I commented it out. */
     /* https://www.magicpattern.design/tools/css-backgrounds */
-    /* background-color: #F1F1FA;
-    opacity: 0.8;
-    background: radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent) 15px 15px, linear-gradient(#595050 1.2000000000000002px, transparent 1.2000000000000002px) 0 -0.6000000000000001px, linear-gradient(90deg, #595050 1.2000000000000002px, #F1F1FA 1.2000000000000002px) -0.6000000000000001px 0;
-    background-size: 30px 30px, 30px 30px, 15px 15px, 15px 15px;
-} */
+    /* background-color: #F1F1FA; */
+    /* opacity: 0.8; */
+    /* background: radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent) 15px 15px, linear-gradient(#595050 1.2000000000000002px, transparent 1.2000000000000002px) 0 -0.6000000000000001px, linear-gradient(90deg, #595050 1.2000000000000002px, #F1F1FA 1.2000000000000002px) -0.6000000000000001px 0;
+    background-size: 30px 30px, 30px 30px, 15px 15px, 15px 15px; */
+    background: rgb(47,6,101);
+    background: radial-gradient(circle, rgba(47,6,101,1) 0%, rgba(21,21,50,1) 100%);
+    color: white;
+} 
 
 .top {
     display: flex;
@@ -41,20 +44,22 @@ input {
     margin: 15px;
 } */
 
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
 .left {
     display: flex;
-    flex: wrap;
+    flex-direction: column;
     width: 50%;
     border-style: solid;
 }
 .right {
     display:flex;
+    flex-direction: column;
     border-style: solid;
     width: 50%;
-}
-.content {
-    display: flex;
-    flex-direction: row;
 }
 
 .navBar {
