@@ -22,23 +22,25 @@
     </div>
     <div class="horoscope-input frost">
         <h1> Check Your Daily Horoscope! </h1>
-        <form class="dropdown" style="display:inline-block">
+        <div class="dropdown" style="display:inline-block">
             <label for="birthday">Enter your birthday to consult the stars about your daily horoscope:</label>
-            <select name="month" id="month">
-                <option value="jan">January</option>
-                <option value="feb">February</option>
-                <option value="mar">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="aug">August</option>
-                <option value="sept">September</option>
-                <option value="oct">October</option>
-                <option value="nov">November</option>
-                <option value="dec">December</option>
+            <select name="months" id="months">
+                <option value="" disabled selected>Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
             </select>
-            <select name="day" id="day">
+            <select name="days" id="days">
+                <option value="" disabled selected>Day</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -49,7 +51,7 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
-                <option value="11">1</option>
+                <option value="11">11</option>
                 <option value="12">12</option>
                 <option value="13">13</option>
                 <option value="14">14</option>
@@ -71,8 +73,8 @@
                 <option value="30">30</option>
                 <option value="31">31</option>
             </select>
-            <input type="submit" class="submit">
-        </form>
+            <button id="submitButton">Submit</button>
+        </div>
     </div>
     <br>
     <div class="content">
@@ -87,5 +89,6 @@
                 <!-- Add more information -->
             </div>
     </div>
+    <script src="./horoscope.js"></script>
 </body>
 </html>
