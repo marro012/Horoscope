@@ -8,7 +8,10 @@ const showHoroscope = () => {
     let zodiac = findZodiac(monthValue, dayValue);
     let zodiacData = zodiacApi(zodiac);
   
-    let hexColor = getHexColor(zodiacData);
+
+    
+    let hexColor;
+
     
     
 };
@@ -128,12 +131,10 @@ const getHexColor = async (colorName)=>{
     })
     .then(res => res.json())
     .then(data => {
-        //let newData= JSON.stringify(data)
-        console.log(data.colors);
         for (i in data.colors){
             //console.log(data.colors[i].name);
             if (data.colors[i].name==colorName){
-                console.log(data.colors[i].hex)
+                // Returns specific hex code for color
                 return data.colors[i].hex;
             }
         }
@@ -148,13 +149,18 @@ const zodiacApi = (zodiac) => {
     })
     .then(res => res.json())
     .then(data => {
-        const zodiacInfo = data;
-        let hex = getHexColor(data.color);
-        let zodiacData =[ data,  hex]
-        return zodiacData;
+        // console.log(zodiacInfo)
+        hexColor = getHexColor(data.color);
+        console.log(data);
+        let horoscope = renderHoroscope(data);
+        document.getElementById('left').innerText = horoscope; // <--LEFT OFF HERE
+
+        return data;
     });
 };
 
-const renderHoroscope = () => {
-    
+const renderHoroscope = (data) => {
+    console.log(data.description)
+    return data.description
+    //return `<div>${quote}</div>`
 }
