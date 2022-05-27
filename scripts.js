@@ -126,7 +126,6 @@ const getHexColor = async (colorName)=>{
     const url = `https://api.color.pizza/v1/names/?name=${colorName}`;
     await fetch(url, {
         method: 'POST',
-       // body: JSON.stringify(data)
 
     })
     .then(res => res.json())
@@ -135,6 +134,7 @@ const getHexColor = async (colorName)=>{
             //console.log(data.colors[i].name);
             if (data.colors[i].name==colorName){
                 // Returns specific hex code for color
+                console.log(data.colors[i].hex)
                 return data.colors[i].hex;
             }
         }
@@ -149,18 +149,26 @@ const zodiacApi = (zodiac) => {
     })
     .then(res => res.json())
     .then(data => {
-        // console.log(zodiacInfo)
         hexColor = getHexColor(data.color);
         console.log(data);
         let horoscope = renderHoroscope(data);
-        document.getElementById('left').innerText = horoscope; // <--LEFT OFF HERE
-
+        document.getElementById('left').innerHTML = `<h2>Zodiac Sign: ${zodiac}</h2>` + horoscope;
         return data;
     });
 };
 
 const renderHoroscope = (data) => {
-    console.log(data.description)
-    return data.description
-    //return `<div>${quote}</div>`
+    let info = data 
+    let {description, date_range, color, mood, lucky_number, compatibility, } = info
+    return `<div class="zodiacInfo">
+                <div><strong>Date Range:</strong> ${date_range}</div>
+                <div><strong>Compatibility:</strong> ${compatibility}</div>
+                <div><strong>Mood:</strong> ${mood}</div>
+                <div><strong>Color:</strong> ${color}</div>
+                <div><strong>Lucky Number:</strong> ${lucky_number}</div>
+                <br>
+                <div style="text-align:center">"${description}"</div>
+            </div>
+    
+    `
 }
