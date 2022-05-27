@@ -6,7 +6,10 @@ const showHoroscope = () => {
 
     console.log(findZodiac(monthValue, dayValue));
     let zodiac = findZodiac(monthValue, dayValue);
-    zodiacApi(zodiac);
+    let zodiacData = zodiacApi(zodiac);
+  
+    let hexColor = getHexColor(zodiacData);
+    
     
 };
 
@@ -116,6 +119,28 @@ const findZodiac = (month, day) => {
     return zodiacSign;
 };
 
+const getHexColor = async (colorName)=>{
+    const url = `https://api.color.pizza/v1/names/?name=${colorName}`;
+    await fetch(url, {
+        method: 'POST',
+       // body: JSON.stringify(data)
+
+    })
+    .then(res => res.json())
+    .then(data => {
+        //let newData= JSON.stringify(data)
+        console.log(data.colors);
+        for (i in data.colors){
+            //console.log(data.colors[i].name);
+            if (data.colors[i].name==colorName){
+                console.log(data.colors[i].hex)
+                return data.colors[i].hex;
+            }
+        }
+    });
+}
+
+
 const zodiacApi = (zodiac) => {
     const url = `https://aztro.sameerkumar.website?sign=${zodiac}&day=today`;
     fetch(url, {
@@ -124,7 +149,9 @@ const zodiacApi = (zodiac) => {
     .then(res => res.json())
     .then(data => {
         const zodiacInfo = data;
-        console.log(zodiacInfo);
+        let hex = getHexColor(data.color);
+        let zodiacData =[ data,  hex]
+        return zodiacData;
     });
 };
 
