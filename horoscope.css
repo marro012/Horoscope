@@ -1,75 +1,66 @@
 body { 
-    /* Background pattern can be removed. I added to try and see the frosted glass effect on the background, but it didn’t work. I commented it out. */
-    /* https://www.magicpattern.design/tools/css-backgrounds */
-    /* background-color: #F1F1FA; */
-    /* opacity: 0.8; */
-    /* background: radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #F1F1FA 20%, #F1F1FA 80%, transparent 80%, transparent) 15px 15px, linear-gradient(#595050 1.2000000000000002px, transparent 1.2000000000000002px) 0 -0.6000000000000001px, linear-gradient(90deg, #595050 1.2000000000000002px, #F1F1FA 1.2000000000000002px) -0.6000000000000001px 0;
-    background-size: 30px 30px, 30px 30px, 15px 15px, 15px 15px; */
     background: rgb(47,6,101);
-    background: radial-gradient(circle, rgba(47,6,101,1) 0%, rgba(21,21,50,1) 100%);
+    background: radial-gradient(circle, rgb(52, 10, 108) 0%, rgba(21,21,50,1) 100%);
     color: white;
+    background-attachment: fixed;
 } 
 
 .top {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right:10%;
     margin-top: 25px;
     margin-bottom: 15px;
     height: 20em;
-
 }
 
 .horoscope-input {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     border-style: solid;
     padding-bottom: 15px;
+    margin-left: 10%;
+    margin-right:10%;
+    width: auto;
+    border-radius: 15px;
+    padding: 15px;
 }
 
 input {
     text-align: center;
 }
 
-/* .bottom > div {
-    height: 20em; */
-    /* Adjust height to image/content height on right  */
-    /* border-style: 1px solid;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, .70); */
-    /* backdrop-filter: blur(120px); <-- I tried to add a frosted glass*/
-    /* padding: 15px;
-    margin: 15px;
-} */
-
 .content {
     display: flex;
     flex-direction: row;
+    margin-left: 10%;
+    margin-right:10%;
+}
+
+.content>div{
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    border-style: solid;
 }
 
 .left {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    border-style: solid;
+    margin-left: 0%;
+    margin-right:2.5%;
 }
+
 .right {
-    display:flex;
-    flex-direction: column;
-    border-style: solid;
-    width: 50%;
+    margin-left: 2.5%;
+    margin-right:0%;
 }
 
 .navBar {
     display: flex;
     justify-content: space-between;
 }
-.bookmark {
-    border: 1px solid;
-    padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
