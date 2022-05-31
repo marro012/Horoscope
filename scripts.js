@@ -115,21 +115,25 @@ const findZodiac = (month, day) => {
     return zodiacSign;
 };
 
-const getHexColor = (colorName)=>{
+const getHexColor = (colorName,usercomp)=>{
     const url = `https://api.color.pizza/v1/names/?name=${colorName}`;
     fetch(url, {
         method: 'GET',
-
     })
     .then(res => res.json())
     .then(data => {
+        let bcFlag;
         for (i in data.colors){
-            //console.log(data.colors[i].name);
             if (data.colors[i].name==colorName){
                 // Returns specific hex code for color
                 console.log(data.colors[i].hex)
-                return data.colors[i].hex;
+                document.getElementById(usercomp).style.backgroundColor = data.colors[i].hex;
+                bcFlag=true;
+                break; //return data.colors[i].hex;
             }
+        }
+        if (bcFlag!=true){
+            //document.getElementById("bottom").style.backgroundColor = data.colors[0].hex;
         }
     });
 };
@@ -142,9 +146,9 @@ const zodiacApi = (zodiac) => {
     })
     .then(res => res.json())
     .then(data => {
-        let userHexColor = getHexColor(data.color); //returns hex code for user color
-
-        let userHoroscope = renderUserHoroscope(data);
+        getHexColor(data.color,"b1");
+        getHexColor(data.color,"b2");
+                let userHoroscope = renderUserHoroscope(data);
         document.getElementById('left').innerHTML = `<h2>Zodiac Sign: ${zodiac}</h2>` + userHoroscope;
         console.log("Comp Zodiac: " + data.compatibility); //returns compatibile zodiac sign
         let compZodiac = data.compatibility;
@@ -153,8 +157,7 @@ const zodiacApi = (zodiac) => {
         })
         .then(res => res.json())
         .then(data => {
-            let compHexColor = getHexColor(data.color); //returns hex code for comp color
-            
+                      
             let compHoroscope = renderCompHoroscope(data);
             document.getElementById('right').innerHTML = `<h2>Compatible Sign: ${compZodiac}</h2>` + compHoroscope;
         })
@@ -175,7 +178,7 @@ const renderUserHoroscope = (data) => {
             </div>`
 };
 
-const renderCompHoroscope = (data) => {
+const renderCompHoroscope = (data, backColor) => {
     let compInfo = data;
     let {description, date_range, color, mood, lucky_number} = compInfo;
     return `<div class="zodiacInfo">
