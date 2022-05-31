@@ -1,9 +1,26 @@
+.text {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family:monospace;
+    color: white;
+    font-size: 24px;
+
+}
+
 body { 
     background: rgb(47,6,101);
     background: radial-gradient(circle, rgb(52, 10, 108) 0%, rgba(21,21,50,1) 100%);
     color: white;
     background-attachment: fixed;
+    margin-bottom: 100px;
 } 
+
+.zodiacIcons {
+    display: block;
+    margin: auto;
+    margin-top: -25px;
+}
 
 .top {
     display: flex;
@@ -13,7 +30,6 @@ body {
     margin-left: 10%;
     margin-right:10%;
     margin-top: 25px;
-    margin-bottom: 15px;
     height: 20em;
 }
 
@@ -42,12 +58,15 @@ input {
 }
 
 .content>div{
-    border-radius: 15px;
-    padding: 15px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 15px;
     width: 50%;
     border-style: solid;
+    font-size: 20px;
 }
 
 .left {
@@ -58,9 +77,4 @@ input {
 .right {
     margin-left: 2.5%;
     margin-right:0%;
-}
-
-.navBar {
-    display: flex;
-    justify-content: space-between;
 }
