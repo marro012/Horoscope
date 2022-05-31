@@ -115,7 +115,7 @@ const findZodiac = (month, day) => {
     return zodiacSign;
 };
 
-const getHexColor = (colorName)=>{
+const getHexColor = (colorName, usercomp)=>{
     const url = `https://api.color.pizza/v1/names/?name=${colorName}`;
     fetch(url, {
         method: 'GET',
@@ -123,13 +123,18 @@ const getHexColor = (colorName)=>{
     })
     .then(res => res.json())
     .then(data => {
+        let bcFlag;
         for (i in data.colors){
-            //console.log(data.colors[i].name);
             if (data.colors[i].name==colorName){
                 // Returns specific hex code for color
                 // console.log(data.colors[i].hex)
-                return data.colors[i].hex;
+                document.getElementById(usercomp).style.backgroundColor = data.colors[i].hex;
+                 bcFlag=true;
+                 break; //return data.colors[i].hex;
             }
+        }
+        if (bcFlag!=true){
+            document.getElementById(usercomp).style.backgroundColor = data.colors[0].hex;
         }
     });
 };
@@ -141,9 +146,9 @@ const zodiacApi = (zodiac) => {
     })
     .then(res => res.json())
     .then(data => {
-        let userHexColor = getHexColor(data.color); //returns hex code for user color
+        getHexColor(data.color, "b1"); //returns hex code for user color
         let userHoroscope = renderUserHoroscope(data);
-        document.getElementById('left').innerHTML = `<h2 style="color${userHexColor}">Zodiac Sign: ${zodiac}</h2>` + userHoroscope;
+        document.getElementById('left').innerHTML = `<h2>Zodiac Sign: ${zodiac}</h2>` + userHoroscope;
 
         console.log("Comp Zodiac: " + data.compatibility); //returns compatibile zodiac sign
         let compZodiac = data.compatibility;
@@ -153,9 +158,7 @@ const zodiacApi = (zodiac) => {
         .then(res => res.json())
         .then(data => {
             let compHoroscope = renderCompHoroscope(data);
-            let compHexColor = getHexColor(data.name); //returns hex code for comp color
-            console.log(compHexColor);
-            document.getElementById('right').innerHTML = `<h2 style="color:${compHexColor}">Compatible Sign: ${compZodiac}</h2>` + compHoroscope;
+            document.getElementById('right').innerHTML = `<h2>Compatible Sign: ${compZodiac}</h2>` + compHoroscope;
         })
     });
 };
@@ -176,12 +179,11 @@ const renderUserHoroscope = (data) => {
 
 const renderCompHoroscope = (data) => {
     let compInfo = data;
-    let compHexColor = getHexColor(data.color); //returns hex code for comp color
     let {description, date_range, color, mood, lucky_number} = compInfo;
     return `<div class="zodiacInfo">
                 <div><strong>Date Range:</strong> ${date_range}</div>
                 <div><strong>Mood:</strong> ${mood}</div>
-                <div style="color:${compHexColor}"><strong>Color:</strong> ${color}</div>
+                <div><strong>Color:</strong> ${color}</div>
                 <div><strong>Lucky Number:</strong> ${lucky_number}</div>
                 <br>
                 <div style="text-align:center">"${description}"</div>
