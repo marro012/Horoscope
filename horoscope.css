@@ -43,7 +43,6 @@ body {
     margin-right:10%;
     width: auto;
     border-radius: 15px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding: 15px;
 }
 
@@ -73,10 +72,9 @@ input {
 .left {
     margin-left: 0%;
     margin-right:2.5%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+}
 
 .right {
     margin-left: 2.5%;
     margin-right:0%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
