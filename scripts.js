@@ -127,13 +127,12 @@ const getHexColor = (colorName)=>{
             //console.log(data.colors[i].name);
             if (data.colors[i].name==colorName){
                 // Returns specific hex code for color
-                console.log(data.colors[i].hex)
+                // console.log(data.colors[i].hex)
                 return data.colors[i].hex;
             }
         }
     });
 };
-
 
 const zodiacApi = (zodiac) => {
     const url = `https://aztro.sameerkumar.website?sign=${zodiac}&day=today`;
@@ -143,9 +142,9 @@ const zodiacApi = (zodiac) => {
     .then(res => res.json())
     .then(data => {
         let userHexColor = getHexColor(data.color); //returns hex code for user color
-
         let userHoroscope = renderUserHoroscope(data);
-        document.getElementById('left').innerHTML = `<h2>Zodiac Sign: ${zodiac}</h2>` + userHoroscope;
+        document.getElementById('left').innerHTML = `<h2 style="color${userHexColor}">Zodiac Sign: ${zodiac}</h2>` + userHoroscope;
+
         console.log("Comp Zodiac: " + data.compatibility); //returns compatibile zodiac sign
         let compZodiac = data.compatibility;
         fetch (`https://aztro.sameerkumar.website?sign=${compZodiac}&day=today`, { //fetch API for comp zodiac info
@@ -153,10 +152,10 @@ const zodiacApi = (zodiac) => {
         })
         .then(res => res.json())
         .then(data => {
-            let compHexColor = getHexColor(data.color); //returns hex code for comp color
-            
             let compHoroscope = renderCompHoroscope(data);
-            document.getElementById('right').innerHTML = `<h2>Compatible Sign: ${compZodiac}</h2>` + compHoroscope;
+            let compHexColor = getHexColor(data.name); //returns hex code for comp color
+            console.log(compHexColor);
+            document.getElementById('right').innerHTML = `<h2 style="color:${compHexColor}">Compatible Sign: ${compZodiac}</h2>` + compHoroscope;
         })
     });
 };
@@ -177,11 +176,12 @@ const renderUserHoroscope = (data) => {
 
 const renderCompHoroscope = (data) => {
     let compInfo = data;
+    let compHexColor = getHexColor(data.color); //returns hex code for comp color
     let {description, date_range, color, mood, lucky_number} = compInfo;
     return `<div class="zodiacInfo">
                 <div><strong>Date Range:</strong> ${date_range}</div>
                 <div><strong>Mood:</strong> ${mood}</div>
-                <div><strong>Color:</strong> ${color}</div>
+                <div style="color:${compHexColor}"><strong>Color:</strong> ${color}</div>
                 <div><strong>Lucky Number:</strong> ${lucky_number}</div>
                 <br>
                 <div style="text-align:center">"${description}"</div>
