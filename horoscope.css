@@ -96,6 +96,7 @@ input {
 }
 .bottom>div{
     height: 100px;
-    width: 100%;
+    width: 20%;
     border-radius: 10px;
 } 
+
