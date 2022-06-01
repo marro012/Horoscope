@@ -118,41 +118,24 @@ const findZodiac = (month, day) => {
 const getHexColor = (colorName, usercomp)=>{
     const url = `https://api.color.pizza/v1/names/?name=${colorName}`;
     fetch(url, {
-        method: ‘GET’,
+        method: 'GET',
+
     })
     .then(res => res.json())
     .then(data => {
-        let tempColor;
         let bcFlag;
         for (i in data.colors){
             if (data.colors[i].name==colorName){
                 // Returns specific hex code for color
                 // console.log(data.colors[i].hex)
-                tempColor=data.colors[i].hex;
-                bcflag=true;
-                //document.getElementById(usercomp).style.backgroundColor = data.colors[i].hex;
+                document.getElementById(usercomp).style.backgroundColor = data.colors[i].hex;
+                 bcFlag=true;
                  break; //return data.colors[i].hex;
             }
         }
         if (bcFlag!=true){
-            //document.getElementById(usercomp).style.backgroundColor = data.colors[0].hex;
-            tempColor=data.colors[0].hex;
+            document.getElementById(usercomp).style.backgroundColor = data.colors[0].hex;
         }
-        let mainColor = tempColor.substr(tempColor.length-6);
-        console.log(mainColor);
-        fetch(`https://www.thecolorapi.com/scheme?hex=${mainColor}`, {method: ‘GET’})
-        .then(res => res.json())
-        .then(data3 => {
-            for (i in data3.colors){
-            console.log(data3.colors[i].hex.value);
-            }
-            //console.log(data3.colors[i].hex);
-            document.getElementById(“b1”).style.backgroundColor = data3.colors[0].hex.value
-            document.getElementById(“b2").style.backgroundColor = data3.colors[1].hex.value
-            document.getElementById(“b3”).style.backgroundColor = data3.colors[2].hex.value
-            document.getElementById(“b4").style.backgroundColor = data3.colors[3].hex.value
-            document.getElementById(“b5”).style.backgroundColor = data3.colors[4].hex.value
-        });
     });
 };
 

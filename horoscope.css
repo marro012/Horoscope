@@ -83,20 +83,20 @@ input {
 
 .bottom {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     border-style: solid;
     padding-bottom: 15px;
     margin-top: 25px;
     margin-left: 10%;
-    margin-right:10%;
+    margin-right: 10%;
     width: auto;
     border-radius: 15px;
     padding: 15px;
 }
-.bottom>div{
+
+.bottom>div {
     height: 100px;
     width: 20%;
     border-radius: 10px;
-} 
-
+}
